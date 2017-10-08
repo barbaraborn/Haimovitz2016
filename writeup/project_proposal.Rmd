@@ -1,0 +1,36 @@
+---
+title: "Haimovitz2016_Project"
+author: "Barbara Born"
+date: "October 8, 2017"
+output: html_document
+---
+
+## Project Proposal
+
+Haimovitz, K., & Dweck, C. S. (2016). Parents' Views of Failure Predict Children's Fixed and Growth Intelligence Mind-Sets.. *Psychological Science*, 27, 859-869.
+cle2017
+
+### Justification
+
+  Student's educational development - both regarding academic achievement and personal growth - is the primary goal of schooling. Nevertheless, teachers are struggling to attain success in their intents educating children and adolescents because one's learning is determined not only by the quality of the classes he or she attends but for the family context, socio-economic status, among other aspects. While it is impossible for teachers to reach all out-side schools variables that make student's learning more difficult, it is possible to them to benefit from information regarding parents' style of upbringing. In this sense, Haimovitz and Dweck's (2016) study adds important contributions to the field of education. In this paper, the authors describe three studies that aimed to understand how parents' "failure mind-set" is related to students "intelligence mind-sets" and what how the two types of failure mind-sets (failure as debilitating versus failure as enhancing) manifests. 
+  
+  The fourth study, in which the authors created an experiment manipulating the failure mindset of parents, is of particular interest for me. As a researcher interested in teacher education, to grasp these mechanisms is a form to gather information that can be used in teacher training to prepare them to interact with parents more constructively. Therefore, I am interested in replicating "study 04" in this paper, in which they were interested in identifying causal relations between failure mindset and reactions to children failure. In this study, parents receive as "treatment" a manipulation of failure mindset to be either "failure-as-debilitating" and "failure-as-enhancing". They were asked, them, to react to students' hypothetical failure situation.  The authors recruited 132 parents through Amazon's Mechanical Turk Web site. These participants answered a survey that assessed several beliefs, including their perceptions of their children's competence. 
+  
+  
+### Stimuli, procedures, and challenges
+
+  For complete this project, I will need to select a random sample of 132 parents using Amazon's Mechanical Turk. Therefore, this will require me to identify a larger group of potential subjects from which I will draw the sample. Regarding instruments, I will need:
+
+* Survey assessing the parent's intelligence mindsets.
+* Survey assessing the parent's perception of his child's competence.
+* Questionnaires to promote manipulation of failure mindset.
+* Situations of student's failure.
+* Rubrics to rate their answers. 
+
+This material is available on https://osf.io/hb583/ .
+  
+  Regarding methodology, I will have to perform a regression analysis of failure mind-set on types of reactions for student failure.
+  
+  The challenges I will face with this project are twofold. First, I will have to learn how to use MTurk and understand better the implications of this tool (including financial problems that I may have concerning compensation for participation in this study). Second, although it seems feasible regarding time because I will use instruments that are ready and that were tested for reliability, I need to work on a very tight schedule to make sure that I have the results on time to produce the final report. 
+
+
