@@ -1,2 +1,3 @@
 # Haimovitz2016
-Psych 251 Replication Project - Fall 2017
+
+This is a replication project proposal created by Barbara Born. The proposed study aims to replicate Haimovitz and Dweck (2016) study, attached in this repository.
