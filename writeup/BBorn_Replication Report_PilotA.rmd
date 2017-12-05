@@ -1,0 +1,226 @@
+---
+title: "Replication of Study Parents' Views of Failure Predict Children's Fixed and Growth Intelligence Mind-Sets by Haimovitz, Kyla & Dweck, Carol S. (2016, Psychological Science)"
+author: "Barbara Barbosa Born (bborn@stanford.edu)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+##Introduction
+
+Student's educational development - both regarding academic achievement and personal growth - is the primary goal of schooling. Nevertheless, teachers are struggling to attain success in their intents educating children and adolescents because one's learning is determined not only by the quality of the classes he or she attends but for the family context, socio-economic status, among other aspects. While it is impossible for teachers to reach all out-side schools variables that make student's learning more difficult, it is possible to them to benefit from information regarding parents' style of upbringing. In this sense, Haimovitz and Dweck's (2016) study adds important contributions to the field of education. In this paper, the authors describe three studies that aimed to understand how parents' "failure mind-set" is related to students "intelligence mind-sets" and what how the two types of failure mind-sets (failure as debilitating versus failure as enhancing) manifests. 
+  
+  The fourth study, in which the authors created an experiment manipulating the failure mindset of parents, is of particular interest for me. As a researcher interested in teacher education, to grasp these mechanisms is a form to gather information that can be used in teacher training to prepare them to interact with parents more constructively. Therefore, I am interested in replicating "study 04" in this paper, in which they were interested in identifying causal relations between failure mindset and reactions to children failure. In this study, parents receive as "treatment" a manipulation of failure mindset to be either "failure-as-debilitating" and "failure-as-enhancing". They were asked, them, to react to students' hypothetical failure situation.  The authors recruited 132 parents through Amazon's Mechanical Turk Web site. These participants answered a survey that assessed several beliefs, including their perceptions of their children's competence. 
+
+
+##Methods
+
+###Power Analysis
+
+Original Effect size: **-0.6236**
+Post-hoc power analysis had shown that the original sample achieved **90%**. 
+
+The power analysis based on the effect size had shown the following sample size for each power:
+**80%** = 66 (33 per group)
+**90%** = 90 (45 per group)
+**95%** = 114 (57 per group)
+
+For this replication, I intend to use the same power achieved by the authors, i.e., 90%. 
+
+![Power Analysis.](C:/Users/babi-/Google Drive/Stanford PhD/2017-18/Fall 2017/PSYCH 251/Final project/Haimovitz2016/PowerAnalysis.png)
+
+###Planned Sample
+
+The planned sample size is 90 subjects (45 per group). The sample will be draw from Amazon Mechanical Turk. The selection criteria will be only people that lives in the US and that have children. 
+
+
+###Materials
+
+For the replication, I used the materials provided by the author in the Open Science Framework (https://osf.io/hb583/). More specifically, I used the questions for parents' mindset from Study 01, as well as the biased questionaire for manipulating the failure mindset and the proposed case for them to react. 
+
+The survey was organized in Qualtrics format, and linked to Amazon Mechanical Turk. 
+
+
+###Procedure	
+Procedures from the original paper: 
+
+"Participants completed an online survey initially assessing several beliefs, including their perceptions of their child's competence (assessed with same measure as in Study 1; ?? = .79). Then we temporarily manipulated failure mindsets by randomly assigning the parents to complete one of two five-item biased questionnaires, written to foster agreement with either a failure-is-debilitating mind-set (e.g., "Experienc- ing failure can lead to negative feelings, like shame or sadness, that interfere with learning") or a failure-is- enhancing mind-set (e.g., "Experiencing failure can improve performance in the long run if you learn from it"). All measures used a 6-point rating scale from 1 (strongly disagree) to 6 (strongly agree). One-sample t tests comparing the mean in each priming condition with the scale's midpoint (3.5) showed that participants' agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD = 1.07), t(56) = 6.45, p < .001, and the failure-is- enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001. We then asked participants to read and vividly imagine a scenario in which their child came home from school with a failing grade on a math quiz, as in Study 2. They then wrote what they would do, think, and feel in response. Finally, participants reported on their failure mind-sets (?? = .82), using the same items as in Study 1, as part of a survey that included a few other items".
+
+This procedure was followed precisely. The only adjustment is that I included a demografics section in my qualtrics survey since participants information is not available through Amazon MTurk. 
+
+###Analysis Plan
+
+
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+
+**Clarify key analysis of interest here** 
+I will specifically look at the relation between the type of failure mindset parents hold and the reaction they have to their child's failure. 
+
+
+
+###Differences from Original Study
+
+Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+  Any differences from what was described as the original plan, or “none”.
+
+
+##Results
+
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+###Data Preparation
+
+####Load Relevant Libraries and Functions
+library(tidyverse) # for data munging
+library(knitr) # for kable table formating
+library(haven) # import and export 'SPSS', 'Stata' and 'SAS' Files
+library(readxl) # import excel files
+
+####Import data
+setwd("/Users/babi-/Google Drive/Stanford PhD/2017-18/Fall 2017/PSYCH 251/Final project/Haimovitz2016/")
+
+data.pilot <- read.csv("Failure Mindset Replicaton_November 25.csv", header = FALSE, sep = ",")
+
+#### Data exclusion / filtering
+
+data.tidy <- data.pilot %>%
+  rename(subj_id=V1, 
+         int_min_01=V6, int_min_02=V7, int_min_03=V8, int_min_04=V9,
+         fai_min_01=V10, fai_min_02=V11, fai_min_03=V12, fai_min_04 = V13,
+         fai_min_05=V14, fai_min_06=V15, 
+         emo_min_01=V16, emo_min_02=V17, 
+         per_min_01=V18, per_min_02=V19,
+         per_chi_01=V20, per_chi_02=V21, per_chi_03=V22, per_chi_04=V23,
+         educ=V24, gender=V25, origin=V26,
+         cond_deb_01=V27, cond_deb_02=V28, cond_deb_03=V29,
+         cond_deb_04=V30, cond_deb_05=V31, 
+         cond_enh_01=V32, cond_enh_02=V33, cond_enh_03=V34, cond_enh_04=V35,
+         cond_enh_05=V36, 
+         say_chil=V37, think=V38, feel=V39,
+         per_ori=V40, ler_ori=V41,
+         fai_post_01=V42, fai_post_02=V43, fai_post_03=V44,
+         fai_post_04=V45, fai_post_05=V46, fai_post_06=V47)
+
+data.tidy = data.tidy[-1,]
+temp = rep(0,nrow(data.tidy))
+temp[data.tidy$educ=="post-graduate degree"]=4
+temp[data.tidy$educ=="college degree"]=3
+
+data.tidy$educ = temp
+
+##Transforming factors into numerical variables
+
+data.tidy$int_min_01<- as.numeric(as.character(data.tidy$int_min_01))
+data.tidy$int_min_02<- as.numeric(as.character(data.tidy$int_min_02))
+data.tidy$int_min_03<- as.numeric(as.character(data.tidy$int_min_03))
+data.tidy$int_min_04<- as.numeric(as.character(data.tidy$int_min_04))
+data.tidy$fai_min_01<- as.numeric(as.character(data.tidy$fai_min_01))
+data.tidy$fai_min_02<- as.numeric(as.character(data.tidy$fai_min_02))
+data.tidy$fai_min_03<- as.numeric(as.character(data.tidy$fai_min_03))
+data.tidy$fai_min_04<- as.numeric(as.character(data.tidy$fai_min_04))
+data.tidy$fai_min_05<- as.numeric(as.character(data.tidy$fai_min_05))
+data.tidy$fai_min_06<- as.numeric(as.character(data.tidy$fai_min_06))
+data.tidy$emo_min_01<- as.numeric(as.character(data.tidy$emo_min_01))
+data.tidy$emo_min_02<- as.numeric(as.character(data.tidy$emo_min_02))
+data.tidy$per_min_01<- as.numeric(as.character(data.tidy$per_min_01))
+data.tidy$per_min_02<- as.numeric(as.character(data.tidy$per_min_02))
+data.tidy$per_chi_01<- as.numeric(as.character(data.tidy$per_chi_01))
+data.tidy$per_chi_02<- as.numeric(as.character(data.tidy$per_chi_02))
+data.tidy$per_chi_03<- as.numeric(as.character(data.tidy$per_chi_03))
+data.tidy$per_chi_04<- as.numeric(as.character(data.tidy$per_chi_04))
+data.tidy$cond_deb_01<-as.numeric(as.character(data.tidy$cond_deb_01))
+data.tidy$cond_deb_02<-as.numeric(as.character(data.tidy$cond_deb_02))
+data.tidy$cond_deb_03<-as.numeric(as.character(data.tidy$cond_deb_03))
+data.tidy$cond_deb_04<-as.numeric(as.character(data.tidy$cond_deb_04))
+data.tidy$cond_deb_05<-as.numeric(as.character(data.tidy$cond_deb_05))
+data.tidy$cond_enh_01<-as.numeric(as.character(data.tidy$cond_enh_01))
+data.tidy$cond_enh_02<-as.numeric(as.character(data.tidy$cond_enh_02))
+data.tidy$cond_enh_03<-as.numeric(as.character(data.tidy$cond_enh_03))
+data.tidy$cond_enh_04<-as.numeric(as.character(data.tidy$cond_enh_04))
+data.tidy$cond_enh_05<-as.numeric(as.character(data.tidy$cond_enh_05))
+data.tidy$fai_post_01<-as.numeric(as.character(data.tidy$fai_post_01))
+data.tidy$fai_post_02<-as.numeric(as.character(data.tidy$fai_post_02))
+data.tidy$fai_post_03<-as.numeric(as.character(data.tidy$fai_post_03))
+data.tidy$fai_post_04<-as.numeric(as.character(data.tidy$fai_post_04))
+data.tidy$fai_post_05<-as.numeric(as.character(data.tidy$fai_post_05))
+data.tidy$fai_post_06<-as.numeric(as.character(data.tidy$fai_post_06))
+data.tidy$per_ori<-as.numeric(as.character(data.tidy$per_ori))
+data.tidy$ler_ori<-as.numeric(as.character(data.tidy$ler_ori))
+
+#### Prepare data for analysis - create columns etc.
+#create the column names
+names <- names(data.tidy)
+
+data.tidy$int_min_mean = apply(data.tidy[,which(names=="int_min_01"):which(names=="int_min_04")],1,mean)
+
+data.tidy$fai_min_mean = apply(data.tidy[,which(names=="fai_min_01"):which(names=="fai_min_06")],1,mean)
+
+data.tidy$emo_min_mean = apply(data.tidy[,which(names=="emo_min_01"):which(names=="emo_min_02")],1,mean)
+
+data.tidy$per_min_mean = apply(data.tidy[,which(names=="per_min_01"):which(names=="per_min_02")],1,mean)
+
+data.tidy$per_chi_mean = apply(data.tidy[,which(names=="per_chi_01"):which(names=="per_chi_04")],1,mean)
+
+data.tidy$cond_deb_mean = apply(data.tidy[,which(names=="cond_deb_01"):which(names=="cond_deb_05")],1,mean)
+
+data.tidy$cond_enh_mean = apply(data.tidy[,which(names=="cond_enh_01"):which(names=="cond_enh_05")],1,mean)
+
+data.tidy$fai_post_mean = apply(data.tidy[,which(names=="fai_post_01"):which(names=="fai_post_06")],1,mean)
+
+###Creating the dummy for the condition
+deb <- rep(1,11) 
+deb[is.na(data.tidy$cond_deb_01)] <- 0
+
+data.tidy$deb <- deb
+```
+
+### Confirmatory analysis
+
+The analyses as specified in the analysis plan.  
+```{r}
+###Linear regression
+
+####Regression for performance oriented
+reg_per = lm(per_ori~deb,data = data.tidy)
+summary(reg_per)
+
+####Regression for learning oriented
+reg_ler = lm(ler_ori~deb, data = data.tidy)
+summary(reg_ler)
+```
+
+
+*Side-by-side graph with original graph is ideal here*
+
+###Exploratory analyses
+
+Any follow-up analyses desired (not required).  
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.

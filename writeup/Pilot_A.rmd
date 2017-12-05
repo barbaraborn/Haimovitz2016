@@ -1,0 +1,132 @@
+---
+title: "PilotA_Cleaning Data"
+author: "Barbara Born"
+date: "November 25, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Pilot A - Replication Project
+
+This document shows the process of cleaning and testing piloting data for the Replication Project on Psych 251. 
+
+```{r cars}
+library(tidyverse) # for data munging
+library(knitr) # for kable table formating
+library(haven) # import and export 'SPSS', 'Stata' and 'SAS' Files
+library(readxl) # import excel files
+```
+
+## loading data
+
+```{r}
+setwd("/Users/babi-/Google Drive/Stanford PhD/2017-18/Fall 2017/PSYCH 251/Final project/Pilot/")
+
+getwd()
+
+data.pilot <- read.csv("Failure Mindset Replicaton_November 25.csv", header = FALSE, sep = ",")
+```
+
+##Tidy Data
+
+```{r}
+data.tidy <- data.pilot %>%
+  rename(subj_id=V1, 
+         int_min_01=V6, int_min_02=V7, int_min_03=V8, int_min_04=V9,
+         fai_min_01=V10, fai_min_02=V11, fai_min_03=V12, fai_min_04 = V13,
+         fai_min_05=V14, fai_min_06=V15, 
+         emo_min_01=V16, emo_min_02=V17, 
+         per_min_01=V18, per_min_02=V19,
+         per_chi_01=V20, per_chi_02=V21, per_chi_03=V22, per_chi_04=V23,
+         educ=V24, gender=V25, origin=V26,
+         cond_deb_01=V27, cond_deb_02=V28, cond_deb_03=V29,
+         cond_deb_04=V30, cond_deb_05=V31, 
+         cond_enh_01=V32, cond_enh_02=V33, cond_enh_03=V34, cond_enh_04=V35,
+         cond_enh_05=V36, 
+         say_chil=V37, think=V38, feel=V39,
+         per_ori=V40, ler_ori=V41,
+         fai_post_01=V42, fai_post_02=V43, fai_post_03=V44,
+         fai_post_04=V45, fai_post_05=V46, fai_post_06=V47)
+
+data.tidy = data.tidy[-1,]
+temp = rep(0,nrow(data.tidy))
+temp[data.tidy$educ=="post-graduate degree"]=4
+temp[data.tidy$educ=="college degree"]=3
+
+data.tidy$educ = temp
+
+##Transforming factors into numerical variables
+
+data.tidy$int_min_01<- as.numeric(as.character(data.tidy$int_min_01))
+data.tidy$int_min_02<- as.numeric(as.character(data.tidy$int_min_02))
+data.tidy$int_min_03<- as.numeric(as.character(data.tidy$int_min_03))
+data.tidy$int_min_04<- as.numeric(as.character(data.tidy$int_min_04))
+data.tidy$fai_min_01<- as.numeric(as.character(data.tidy$fai_min_01))
+data.tidy$fai_min_02<- as.numeric(as.character(data.tidy$fai_min_02))
+data.tidy$fai_min_03<- as.numeric(as.character(data.tidy$fai_min_03))
+data.tidy$fai_min_04<- as.numeric(as.character(data.tidy$fai_min_04))
+data.tidy$fai_min_05<- as.numeric(as.character(data.tidy$fai_min_05))
+data.tidy$fai_min_06<- as.numeric(as.character(data.tidy$fai_min_06))
+data.tidy$emo_min_01<- as.numeric(as.character(data.tidy$emo_min_01))
+data.tidy$emo_min_02<- as.numeric(as.character(data.tidy$emo_min_02))
+data.tidy$per_min_01<- as.numeric(as.character(data.tidy$per_min_01))
+data.tidy$per_min_02<- as.numeric(as.character(data.tidy$per_min_02))
+data.tidy$per_chi_01<- as.numeric(as.character(data.tidy$per_chi_01))
+data.tidy$per_chi_02<- as.numeric(as.character(data.tidy$per_chi_02))
+data.tidy$per_chi_03<- as.numeric(as.character(data.tidy$per_chi_03))
+data.tidy$per_chi_04<- as.numeric(as.character(data.tidy$per_chi_04))
+data.tidy$cond_deb_01<-as.numeric(as.character(data.tidy$cond_deb_01))
+data.tidy$cond_deb_02<-as.numeric(as.character(data.tidy$cond_deb_02))
+data.tidy$cond_deb_03<-as.numeric(as.character(data.tidy$cond_deb_03))
+data.tidy$cond_deb_04<-as.numeric(as.character(data.tidy$cond_deb_04))
+data.tidy$cond_deb_05<-as.numeric(as.character(data.tidy$cond_deb_05))
+data.tidy$cond_enh_01<-as.numeric(as.character(data.tidy$cond_enh_01))
+data.tidy$cond_enh_02<-as.numeric(as.character(data.tidy$cond_enh_02))
+data.tidy$cond_enh_03<-as.numeric(as.character(data.tidy$cond_enh_03))
+data.tidy$cond_enh_04<-as.numeric(as.character(data.tidy$cond_enh_04))
+data.tidy$cond_enh_05<-as.numeric(as.character(data.tidy$cond_enh_05))
+data.tidy$fai_post_01<-as.numeric(as.character(data.tidy$fai_post_01))
+data.tidy$fai_post_02<-as.numeric(as.character(data.tidy$fai_post_02))
+data.tidy$fai_post_03<-as.numeric(as.character(data.tidy$fai_post_03))
+data.tidy$fai_post_04<-as.numeric(as.character(data.tidy$fai_post_04))
+data.tidy$fai_post_05<-as.numeric(as.character(data.tidy$fai_post_05))
+data.tidy$fai_post_06<-as.numeric(as.character(data.tidy$fai_post_06))
+data.tidy$per_ori<-as.numeric(as.character(data.tidy$per_ori))
+data.tidy$ler_ori<-as.numeric(as.character(data.tidy$ler_ori))
+
+#create the column names
+names <- names(data.tidy)
+
+data.tidy$int_min_mean = apply(data.tidy[,which(names=="int_min_01"):which(names=="int_min_04")],1,mean)
+
+data.tidy$fai_min_mean = apply(data.tidy[,which(names=="fai_min_01"):which(names=="fai_min_06")],1,mean)
+
+data.tidy$emo_min_mean = apply(data.tidy[,which(names=="emo_min_01"):which(names=="emo_min_02")],1,mean)
+
+data.tidy$per_min_mean = apply(data.tidy[,which(names=="per_min_01"):which(names=="per_min_02")],1,mean)
+
+data.tidy$per_chi_mean = apply(data.tidy[,which(names=="per_chi_01"):which(names=="per_chi_04")],1,mean)
+
+data.tidy$cond_deb_mean = apply(data.tidy[,which(names=="cond_deb_01"):which(names=="cond_deb_05")],1,mean)
+
+data.tidy$cond_enh_mean = apply(data.tidy[,which(names=="cond_enh_01"):which(names=="cond_enh_05")],1,mean)
+
+data.tidy$fai_post_mean = apply(data.tidy[,which(names=="fai_post_01"):which(names=="fai_post_06")],1,mean)
+
+deb <- rep(1,11) 
+deb[is.na(data.tidy$cond_deb_01)] <- 0
+
+data.tidy$deb <- deb
+
+
+reg_per = lm(per_ori~deb,data = data.tidy)
+summary(reg_per)
+
+reg_ler = lm(ler_ori~deb, data = data.tidy)
+summary(reg_ler)
+```
+
+
